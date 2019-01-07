@@ -24,6 +24,7 @@ informati
 information
 ## Push Messages
 push messages
+![push](img/pushdash.png)
 ## App Inbox
 information
 ## Takeovers
