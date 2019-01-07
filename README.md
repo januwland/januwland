@@ -27,13 +27,13 @@ lalalal
 
 
 
-| text | preview |
-| ---- | ------- |
-|      |         |
-
-| hello | jjjin |
-| ----- | ----- |
-|       |       |
 
 
+| Hello   | hello |
+| ------- | ----- |
+| hgdfgdf | hghhg |
+
+| ghghg   | hu    |
+| ------- | ----- |
+| ....,nn | mjj n |
 
