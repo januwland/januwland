@@ -6,7 +6,7 @@ Lalala here is introduction
 information
 ## What is Liven
 information
-## Copy Guidelines
+## Copy Guidelines hahah 
 information
 ## Logo & Brand
 information
