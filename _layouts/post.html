@@ -1,81 +1,67 @@
 ---
 layout: default
 ---
-<div class="post">
-  <article itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-    <div class="post__header section-padding--double">
-      <div class="grid-small">
-        <h2 itemprop="name headline">{{ page.title }}</h2>
+{% comment %}
+	This layout is used by the documents in the _posts/ collection
+{% endcomment %}
 
-        <time class="post__date" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">{{ page.date | date: "%-d %b %Y" }}</time>
-      </div>
-    </div>
+{% include breadcrumbs.html class="content-narrow" %}
 
-    {% if page.image %}
-      <div class="post__img">
-        <div>
-          <figure class="absolute-bg" style="background-image: url('{{ page.image }}');"></figure>
-        </div>
-      </div>
-    {% endif %}
-
-    <div class="post__content section-padding">
-      <div class="grid">
-        <div id="markdown" itemprop="articleBody">
-          {{content}}
-        </div>
-
-        {% include share.html %}
-      </div>
-    </div>
-
-    <!-- Everything inside the #author tags pulls data from the author -->
-    {% if page.author %}
-      <div class="section-padding--none">
-        <div class="grid">
-          <hr class="sep"/>
-        </div>
-      </div>
-
-      <div class="section-padding">
-        <div class="grid-small">
-          {% for author in site.author %}
-            <span class="post__author">Posted by {% if author["name"] == page.author and author["url"] %}<a href="{{ author['url'] }}" title="More By {{ page.author }}">{% endif %}{{ page.author }}{% if author["name"] == page.author and author["url"] %}</a>{% endif %}</span>
-            {% if author["name"] == page.author %}
-              <p class="post__bio">{{ author["bio"] }}</p>
+<div class="container pure-g">
+  <div class="pure-u-1">
+    <div class="content content-narrow">
+      <div class="meta">
+        {% if page.date %}
+        <div class="post-date">{{ page.date | date_to_string }}</div>
+        {% endif %}
+        {% if page.tags.size > 0 %}
+        <span class="meta-separator">&bull;</span>
+        <ul class="tags-list">
+          <li class="inline tag_list_item">
+						Tags:
+					</li>
+					{% for tag in page.tags %}
+          <li class="inline tag_list_item">
+            {{ tag }}
+            {% if forloop.last == true %}{% else %}
+              <span>,</span>
             {% endif %}
+          </li>
           {% endfor %}
-        </div>
+        </ul>
+        {% endif %}
       </div>
-    {% endif %}
 
-    {% include disqus.html %}
+      {{ content }}
 
-  </article>
-</div>
-
-<!-- Links to Previous/Next posts -->
-{% assign relatedTag = page.tags | first %}
-{% if relatedTag %}
-  <section class="related section-padding">
-    <div class="grid-xlarge">
-      <h2 class="related__title">Related</h2>
-      <div class="related__container">
-        {% for post in site.tags[relatedTag] limit: 3 %}
-          <article class="related__post">
-            <a class="related__link" href="{{ post.url | absolute_url }}">
-              {% if post.image %}
-                <figure class="related__img">
-                  <img src="{{ post.image }}" alt="{{ post.title }}"/>
-                </figure>
-              {% endif %}
-              <div>
-                <h2 class="related__text">{{ post.title }}</h2>
+      {% if page.related_posts.size > 0 %}
+			<hr>
+        <h2> Related Posts </h2>
+        <div class="grid-layout">
+          <div class="pure-g">
+          {% for item in page.related_posts %}
+            {% assign posts = site.posts | where:"path", item %}
+              {% for post in posts %}
+              <div class="pure-u-1 pure-u-md-1-3">
+                <div class="card">
+                  <div class="card-header">
+                  {% if post.banner_image and post.banner_image != "" %}
+                    <img src="{{ post.banner_image | absolute_url }}" alt="{{ post.title }}">
+                  {% else %}
+                    <img src="{{ "/img/placeholder.png" | absolute_url }}" alt="{{ post.title }}">
+                  {% endif %}
+                  </div>
+                  <div class="card-body">
+                    <h3><a href="{{ post.url | absolute_url }}">{{ post.title }}</a></h3>
+                    <p>{{ post.sub_heading | slice: 0, 80 }}</p>
+                  </div>
+                </div>
               </div>
-            </a>
-          </article>
-        {% endfor %}
-      </div>
+              {% endfor %}
+          {% endfor %}
+          </div>
+        </div>
+      {% endif %}
     </div>
-  </section>
-{% endif %}
+  </div>
+</div>

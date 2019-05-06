@@ -1,28 +1,16 @@
 ---
 layout: default
 ---
-<section class="post">
-  <div>
-    <div class="post__header section-padding--double">
-      <div class="grid-small">
-        <h2>{{ page.title }}</h2>
-      </div>
-    </div>
+{% comment %}
+    A general page layout. Used by default for all content on the site.
+{% endcomment %}
 
-    {% if page.image %}
-      <div class="post__img">
-        <div>
-          <figure class="absolute-bg" style="background-image: url('{{ page.image }}');"></figure>
-        </div>
-      </div>
-    {% endif %}
+{% include breadcrumbs.html class="content-narrow" %}
 
-    <div class="post__content section-padding">
-      <div class="grid">
-        <div id="markdown">
-          {{content}}
+<div class="container pure-g">
+    <div class="pure-u-1">
+        <div class="content content-narrow">
+            {{ content }}
         </div>
-      </div>
     </div>
-  </div>
-</section>
+</div>

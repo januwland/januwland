@@ -1,36 +1,20 @@
 ---
 layout: default
 ---
-<section class="mast section-padding--double">
-  <div class="grid">
-    <h2>
-      {% assign words = page.tag | split: ' ' %}
-      {% for word in words %}
-        {{ word | capitalize | replace: 'The', 'the' }}
-      {% endfor %}
-    </h2>
-  </div>
-</section>
+{% comment %}
+  This layout is used by the jekyll-archives plugin to generate
+  tag pages for all tags found in documents
+{% endcomment %}
 
-<div class="section-padding--none">
-  <div class="grid-large">
-    <hr class="sep"/>
-  </div>
-</div>
+{% include breadcrumbs.html %}
 
-<!-- The main content area -->
-<div class="posts">
-  <div class="grid-xlarge">
-    <div class="posts__container" itemscope itemtype="http://schema.org/Blog" data-columns>
-
-      {% for post in paginator.posts %}
-
-        <!-- The tag below includes the markup for each post - partials/post-card.html -->
-        {% include post-card.html %}
-
-      {% endfor %}
+<h2 class="post_title">{{page.title}}</h2>
+<ul class="posts-list">
+    {% for post in page.posts %}
+    <div class="list-layout">
+        <h2><a href="{{ post.url | absolute_url }}">{{ post.title }}</a></h2>
+        <div>{{ post.content | truncatewords: 30 }}</div>
+        <date>{{ post.date | date_to_string }}</date>
     </div>
-  </div>
-
-  {% include pagination.html %}
-</div>
+    {% endfor %}
+</ul>
