@@ -25,7 +25,7 @@
           <textarea name="message"></textarea>
         </div>
 
-        <button class="button">Submit form</button>
+        <button class="button">Submit</button>
 
       </form>
 
