@@ -5,8 +5,8 @@ author: Nichlas W. Andersen
 excerpt: Get up and running with a fresh macOS Mojave install
 
 ---
-### Install Homebrew
+# Hello
 
-    $ brew brew brew
+This article has now been kabooshed.
 
-Enjoy your new system! 🎉
+![](/uploads/cody-davis-253925-unsplash.jpg)
