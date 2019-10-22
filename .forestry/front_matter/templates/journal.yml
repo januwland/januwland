@@ -32,8 +32,8 @@ fields:
       file: data/authors/nichlas-w-andersen.json
     required: true
     options:
-    - Nichlas W. Andersen
+    - Jan Uwland
   label: Author
-  default: Nichlas W. Andersen
+  default: Jan Uwland
 pages:
 - journal/macos-development-environment.md
