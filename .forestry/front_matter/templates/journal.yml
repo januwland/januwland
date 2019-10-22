@@ -33,6 +33,7 @@ fields:
     required: true
     options:
     - Jan Uwland
+    - Penguin
   label: Author
   default: Jan Uwland
 pages:
